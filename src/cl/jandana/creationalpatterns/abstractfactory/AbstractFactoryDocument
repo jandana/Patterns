@@ -1,0 +1,39 @@
+Component: 
+	AbstractFactory – An abstract class or interface that defines the create methods for abstract products.
+	AbstractProduct – An abstract class or interface describing the general behavior of the resource that will be
+					used by the application.
+	ConcreteFactory – A class derived from the abstract factory . It implements create methods for one or more
+					concrete products.
+	ConcreteProduct – A class derived from the abstract product, providing an implementation for a specific
+					resource or operating environment.
+					
+Problem:
+Suppose you plan to manage address and telephone information as part of a personal information manager (PIM)
+application. The PIM will act as a combination address book, personal planner, and appointment and contact
+manager, and will use the address and phone number data extensively.
+
+You can initially produce classes to represent your address and telephone number data. Code these classes so that
+they store the relevant information and enforce business rules about their format. For example, all phone numbers
+in North America are limited to ten digits and the postal code must be in a particular format.
+
+Shortly after coding your classes, you realize that you have to manage address and phone information for another
+country, such as the Netherlands. The Netherlands has different rules governing what constitutes a valid phone
+number and address, so you modify your logic in the Address and PhoneNumber classes to take the new country
+into account.
+
+Now, as your personal network expands, you need to manage information from another foreign country... and
+another... and another. With each additional set of business rules, the base Address and PhoneNumber classes
+become even more bloated with code and even more difficult to manage. What's more, this code is brittle—with
+every new country added, you need to modify and recompile the classes to manage contact information.
+
+It’s better to flexibly add these paired classes to the system; to take the general rules that apply to address and
+phone number data, and allow any number of possible foreign variations to be “loaded” into a system.
+The Abstract Factory solves this problem. Using this pattern, you define an AddressFactory—a generic
+framework for producing objects that follow the general pattern for an Address and PhoneNumber. At runtime,
+this factory is paired with any number of concrete factories for different countries, and each country has its own
+version of Address and PhoneNumber classes.
+
+Instead of going through the nightmare of adding functional logic to the classes, extend the Address to a
+DutchAddress and the PhoneNumber to a DutchPhoneNumber. Instances of both classes are created by a
+DutchAddressFactory. This gives greater freedom to extend your code without having to make major structural
+modifications in the rest of the system.
