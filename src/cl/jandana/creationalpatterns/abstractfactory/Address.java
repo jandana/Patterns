@@ -7,7 +7,7 @@ public abstract class Address {
 	private String postalCode;
 	
 	public static final String EOL_STRING=System.getProperty("line.separator");
-	public static final String SPACE=" ";
+	public static final String SPACE="  ";
 	
 	public abstract String getCountry();
 	
